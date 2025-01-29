@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  test:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: bancaapi_test
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: |
+      bash -c "
+        dotnet restore &&
+        dotnet build &&
+        dotnet test
+      "
+    networks:
+      - bancaapi_network
+
+  api:
+    image: bancaapi
+    container_name: bancaapi
+    depends_on:
+      - test
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "5076:80"
+    command: |
+      bash -c "
+        dotnet restore &&
+        dotnet build &&
+        dotnet run
+      "
+    networks:
+      - bancaapi_network
+
+networks:
+  bancaapi_network:
+    driver: bridge

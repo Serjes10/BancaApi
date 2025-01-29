@@ -60,7 +60,6 @@ public class TransaccionController : ControllerBase
         {
             var resumen = await _transaccionService.resumenTransaccion(numeroCuenta, identificacion);
 
-            Console.WriteLine(resumen);
             return Ok(new Response<object>(resumen));
         }
         catch (ArgumentException ex)

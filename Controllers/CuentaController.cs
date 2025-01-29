@@ -48,7 +48,6 @@ public class CuentaController : ControllerBase
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
             return StatusCode(400, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
     }
