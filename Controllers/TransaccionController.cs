@@ -30,7 +30,7 @@ public class TransaccionController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
+            return StatusCode(400, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
     }
 
@@ -45,14 +45,11 @@ public class TransaccionController : ControllerBase
         }
         catch (ArgumentException ex)
         {
-            Console.WriteLine(ex);
-
             return BadRequest(new Response<string>(new List<string> { ex.Message }));
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
+            return StatusCode(400, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
     }
 
@@ -63,19 +60,15 @@ public class TransaccionController : ControllerBase
         {
             var resumen = await _transaccionService.resumenTransaccion(numeroCuenta, identificacion);
 
-            Console.WriteLine(resumen);
             return Ok(new Response<object>(resumen));
         }
         catch (ArgumentException ex)
         {
-            Console.WriteLine(ex);
-
             return BadRequest(new Response<string>(new List<string> { ex.Message }));
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
+            return StatusCode(400, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
     }
 }

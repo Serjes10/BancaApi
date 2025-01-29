@@ -31,7 +31,7 @@ public class TransaccionService : ITransaccionService
 
         if (monto <= 0)
         {
-            throw new ArgumentException("El monto no puede ser menor a igual a 0");
+            throw new ArgumentException("El monto no puede ser menor o igual a 0");
         }
 
         var cuenta = await _cuentaService.consultarSaldo(numeroCuenta, identificacion);

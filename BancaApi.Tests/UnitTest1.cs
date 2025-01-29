@@ -1,4 +1,3 @@
-using Xunit;
 namespace BancaApi.Tests;
 
 public class UnitTest1

@@ -9,10 +9,12 @@ namespace BancaApi.Controllers;
 public class ClienteController : ControllerBase
 {
     private readonly IClienteServices _clienteServives;
+    private readonly ILogger<ClienteController> _logger;
 
-    public ClienteController(IClienteServices clienteServices)
+    public ClienteController(ILogger<ClienteController> logger, IClienteServices clienteServices)
     {
         _clienteServives = clienteServices;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -30,7 +32,7 @@ public class ClienteController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
+            return StatusCode(400, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
     }
 
@@ -41,20 +43,15 @@ public class ClienteController : ControllerBase
         {
             var cliente = await _clienteServives.consultarClienteByIndentificacion(identificacion);
 
-            if (cliente == null)
-            {
-                return StatusCode(400, new Response<string>(new List<string> { "Cliente no encontrado." }));
-            }
-
             return Ok(new Response<object>(cliente));
         }
-        catch (ArgumentException ex)
+        catch (ArgumentException ex) 
         {
             return BadRequest(new Response<string>(new List<string> { ex.Message }));
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
+            return StatusCode(400, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
 
     }
@@ -80,7 +77,7 @@ public class ClienteController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
+            return StatusCode(400, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
     }
 

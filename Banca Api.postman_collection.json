@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "8da0e435-b351-444b-8558-b04e1f6beb45",
+		"name": "Banca Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8681807"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Obtener todos los clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/dev/v1/cliente",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Jorge Morales\",\n    \"identificacion\": \"1234\",\n    \"fechaNacimiento\": \"2000-01-01\",\n    \"sexo\": \"Masculino\",\n    \"ingresos\": 5000.0\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/dev/v1/cliente",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener cliente identificacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/dev/v1/cliente/08012000009697",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"cliente",
+								"08012000009697"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuenta",
+			"item": [
+				{
+					"name": "Crear Cuenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idCliente\": 2,\n    \"tipoCuenta\": \"Ahorro\",\n    \"saldoInicial\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/dev/v1/cuenta",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"cuenta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Saldo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/dev/v1/cuenta/10005/cliente/08012000009697",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"cuenta",
+								"10005",
+								"cliente",
+								"08012000009697"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaccion",
+			"item": [
+				{
+					"name": "deposito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numeroCuenta\": \"10005\",\n    \"identificacion\": \"08012000009697\",\n    \"monto\": 750\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/dev/v1/transaccion/deposito",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"transaccion",
+								"deposito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retiro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numeroCuenta\": \"10005\",\n    \"identificacion\": \"08012000009697\",\n    \"monto\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/dev/v1/transaccion/retiro",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"transaccion",
+								"retiro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resumen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/dev/v1/transaccion/resumen/cuenta/10005/cliente/08012000009697",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"transaccion",
+								"resumen",
+								"cuenta",
+								"10005",
+								"cliente",
+								"08012000009697"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
