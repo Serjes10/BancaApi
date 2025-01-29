@@ -21,6 +21,7 @@ Este proyecto fue desarrollado en .NET Core 8 con SQLite. Incluye una colección
     ```
     dotnet clean
     dotnet restore
+    dotnet build
     ```
 
 ### Ejecución del Proyecto
