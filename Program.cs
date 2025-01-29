@@ -15,8 +15,8 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-
-        builder.Services.AddDbContext<BancaDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+        var dbConnectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")  ?? builder.Configuration.GetConnectionString("DefaultConnection");
+        builder.Services.AddDbContext<BancaDbContext>(options => options.UseSqlite(dbConnectionString));
         builder.Services.AddScoped<IClienteServices, ClienteService>();
         builder.Services.AddScoped<IContadorCuentas, ContadorCuentaService>();
         builder.Services.AddScoped<ICuentaServices, CuentaService>();
