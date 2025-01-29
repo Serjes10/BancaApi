@@ -167,3 +167,9 @@
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/bin/Debug/net8.0/BancaApi.Tests.deps.json
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/bin/Debug/net8.0/BancaApi.Tests.runtimeconfig.json
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/obj/Debug/net8.0/BancaApi.Tests.sourcelink.json
+D:\Programacion\BancaApi\BancaApi\obj\Debug\net8.0\BancaApi.csproj.AssemblyReference.cache
+D:\Programacion\BancaApi\BancaApi\obj\Debug\net8.0\BancaApi.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\BancaApi\BancaApi\obj\Debug\net8.0\BancaApi.csproj.CoreCompileInputs.cache
+D:\Programacion\BancaApi\BancaApi\obj\Debug\net8.0\BancaApi.MvcApplicationPartsAssemblyInfo.cs
+D:\Programacion\BancaApi\BancaApi\obj\Debug\net8.0\BancaApi.MvcApplicationPartsAssemblyInfo.cache
+D:\Programacion\BancaApi\BancaApi\obj\Debug\net8.0\BancaApi.sourcelink.json
