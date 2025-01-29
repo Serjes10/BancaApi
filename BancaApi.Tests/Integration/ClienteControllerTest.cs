@@ -7,6 +7,7 @@ using System.Text;
 
 namespace BancaApi.Tests
 {
+    [Collection("Sequential")]
     public class ClienteControllerTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly HttpClient _client;
@@ -23,14 +24,21 @@ namespace BancaApi.Tests
         [Fact]
         public async Task ConsultarClientes_OkReponse()
         {
+            using var scope = _factory.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<BancaDbContext>();
+
+            await context.Database.EnsureCreatedAsync();
+
+            context.Cuentas.RemoveRange(context.Cuentas);
+            context.Clientes.RemoveRange(context.Clientes);
             var response = await _client.GetAsync("/api/dev/v1/cliente");
 
-            response.EnsureSuccessStatusCode();  
+            response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
 
             var responseObject = JsonConvert.DeserializeObject<Response<object>>(content);
             Assert.NotNull(responseObject);
-            Assert.NotNull(responseObject.Data); 
+            Assert.NotNull(responseObject.Data);
         }
 
         /* Prueba para validar que al insertar un cliente y luego consultarlo por la identificacion retorne un codigo 200 y los datos del cliente*/
@@ -72,6 +80,13 @@ namespace BancaApi.Tests
         [Fact]
         public async Task ConsultarClienteByIdentificacion_BadRequestResponse()
         {
+            using var scope = _factory.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<BancaDbContext>();
+
+            await context.Database.EnsureCreatedAsync();
+
+            context.Cuentas.RemoveRange(context.Cuentas);
+            context.Clientes.RemoveRange(context.Clientes);
             var response = await _client.GetAsync("/api/dev/v1/cliente/9999");
 
             Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
@@ -82,14 +97,22 @@ namespace BancaApi.Tests
             Assert.Contains("Cliente no encontrado", responseObject.Errors);
         }
 
-        /* En esta prueba se realiza la insercion de un cliente*/
+        /* En esta prueba se realiza la insercion de un cliente */
         [Fact]
         public async Task CrearCliente_ReturnOK()
         {
+            using var scope = _factory.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<BancaDbContext>();
+
+            await context.Database.EnsureCreatedAsync();
+
+            context.Cuentas.RemoveRange(context.Cuentas);
+            context.Clientes.RemoveRange(context.Clientes);
+            
             var nuevoCliente = new Cliente
             {
                 nombre = "Jorge Morales",
-                identificacion = "12345",
+                identificacion = "6655444",
                 fechaNacimiento = DateTime.Parse("2000-01-01"),
                 sexo = "Masculino",
                 ingresos = 10000
@@ -106,11 +129,11 @@ namespace BancaApi.Tests
             var responseObject = JsonConvert.DeserializeObject<Response<Cliente>>(responseContent);
             Assert.NotNull(responseObject);
             Assert.NotNull(responseObject.Data);
-            Assert.Equal("12345", responseObject.Data.identificacion);
+            Assert.Equal("6655444", responseObject.Data.identificacion);
         }
 
 
-        /* En esta prueba se realiza la insercion de dos clientes con los mismos datos para validar que no genere duplicados*/
+        // /* En esta prueba se realiza la insercion de dos clientes con los mismos datos para validar que no genere duplicados*/
         [Fact]
         public async Task CrearCliente_ClientExist()
         {
@@ -123,7 +146,7 @@ namespace BancaApi.Tests
             var clienteExistente = new Cliente
             {
                 nombre = "Sergio Ortega",
-                identificacion = "1234",
+                identificacion = "8456156",
                 fechaNacimiento = DateTime.Parse("1980-01-01"),
                 sexo = "Masculino",
                 ingresos = 5000
@@ -135,7 +158,7 @@ namespace BancaApi.Tests
             var clienteDuplicado = new Cliente
             {
                 nombre = "Sergio Ortega",
-                identificacion = "1234", 
+                identificacion = "8456156",
                 fechaNacimiento = DateTime.Parse("1980-01-01"),
                 sexo = "Masculino",
                 ingresos = 5000
