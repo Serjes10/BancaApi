@@ -20,7 +20,7 @@ public class ClienteService : IClienteServices
 
         if (clientes == null)
         {
-            throw new Exception("Ocurrio un error al consultar los clientes");
+            throw new ArgumentException("Ocurrio un error al consultar los clientes");
         }
 
         return clientes;
@@ -29,9 +29,10 @@ public class ClienteService : IClienteServices
     public async Task<Cliente> consultarClienteByIndentificacion(string identificacion)
     {
         var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.identificacion == identificacion);
+
         if (cliente == null)
         {
-            throw new Exception("Cliente no encontrado");
+            throw new ArgumentException("Cliente no encontrado");
         }
 
         return cliente;
@@ -42,7 +43,7 @@ public class ClienteService : IClienteServices
         var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.id == id);
         if (cliente == null)
         {
-            throw new Exception("Cliente no encontrado");
+            throw new ArgumentException("Cliente no encontrado");
         }
 
         return cliente;
@@ -51,11 +52,10 @@ public class ClienteService : IClienteServices
     public async Task<Cliente> crearCliente(string nombre, string identificacion, DateTime fechaNacimiento, string sexo, decimal ingresos)
     {
 
-        var cliente = await consultarClienteByIndentificacion(identificacion);
+        var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.identificacion == identificacion);
 
         if(cliente != null){
-            throw new Exception("El cliente ingresado ya existe");
-
+            throw new ArgumentException("El cliente ingresado ya existe");
         }
 
         // Crear cliente
