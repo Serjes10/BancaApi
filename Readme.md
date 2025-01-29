@@ -12,7 +12,7 @@ Este proyecto fue desarrollado en .NET Core 8 con SQLite. Incluye una colección
 1. Clona el repositorio:
 
     ```
-    git clone <URL del repositorio>
+    git clone https://github.com/Serjes10/BancaApi.git
     cd BancaApi
     ```
 
