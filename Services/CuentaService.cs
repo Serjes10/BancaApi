@@ -22,24 +22,36 @@ namespace BancaApi.Services
             _contadorCuentasService = contadorCuentas;
         }
 
-        public async Task<Cuenta> CrearCuentaAsync(int idCliente, decimal saldoInicial, string tipoCuenta)
+        public async Task<Cuenta> crearCuenta(int idCliente, decimal saldoInicial, string tipoCuenta)
         {
 
             var cliente = await _clienteServives.consultarClienteById(idCliente);
 
+            if (cliente == null)
+            {
+                throw new ArgumentException("El cliente ingresado no existe");
+            }
+
             if (saldoInicial < 1000)
             {
-                throw new Exception("El saldo de apertura de la cuenta debe ser mayor a 1000.00");
+                throw new ArgumentException("El saldo de apertura de la cuenta debe ser mayor a 1000.00");
+            }
+
+            if (string.IsNullOrEmpty(tipoCuenta))
+            {
+                throw new ArgumentException("El tipo de cuenta es requerido");
             }
 
             ContadorCuentas contadorCuentas = await _contadorCuentasService.obtenerContador(tipoCuenta);
+
             var cuenta = new Cuenta
             {
-                id = cliente.id,
+                idCliente = cliente.id,
                 saldo = saldoInicial,
                 fechaCreacion = DateTime.Now,
                 estado = true,
-                numeroCuenta = contadorCuentas.correlativo + contadorCuentas.contador.ToString()
+                numeroCuenta = contadorCuentas.correlativo + contadorCuentas.contador.ToString(),
+                tipoCuenta = tipoCuenta
 
             };
 
@@ -49,64 +61,91 @@ namespace BancaApi.Services
             return cuenta;
         }
 
-        public async Task<Cuenta> consultarSaldoAsync(string numeroCuenta)
+        public async Task<Cuenta> consultarSaldo(string numeroCuenta, string identificacion)
         {
-            // Buscar la cuenta en la base de datos por su número de cuenta
+
+            if (string.IsNullOrEmpty(numeroCuenta))
+            {
+                throw new ArgumentException("El numero de cuenta es requerido");
+            }
+
+            if (string.IsNullOrEmpty(numeroCuenta))
+            {
+                throw new ArgumentException("La identificacion del cliente es requerido");
+            }
+
             var cuenta = await _context.Cuentas.FirstOrDefaultAsync(c => c.numeroCuenta == numeroCuenta);
+
             if (cuenta == null)
             {
-                throw new Exception("Cuenta no encontrada");
+                throw new ArgumentException("Cuenta no encontrada");
             }
 
-            return cuenta;  // Devolver la cuenta encontrada
+            var cliente = await _clienteServives.consultarClienteById(cuenta.idCliente);
+
+            if (cliente.identificacion != identificacion)
+            {
+                throw new ArgumentException("La cuenta no pertenece al cliente con identificacion " + identificacion);
+            }
+
+            return cuenta;
         }
 
-        // Registrar una transacción (depósito o retiro)
-        public async Task RegistrarTransaccionAsync(string numeroCuenta, string tipoTransaccion, decimal monto)
+        public async Task<Cuenta> depositoCuenta(string numeroCuenta, decimal monto)
         {
-            var cuenta = await _context.Cuentas
-                                        .FirstOrDefaultAsync(c => c.numeroCuenta == numeroCuenta);
+            if (string.IsNullOrEmpty(numeroCuenta))
+            {
+                throw new ArgumentException("El numero de cuenta es requerido");
+            }
+
+            var cuenta = await _context.Cuentas.FirstOrDefaultAsync(c => c.numeroCuenta == numeroCuenta);
 
             if (cuenta == null)
             {
-                throw new Exception("Cuenta no encontrada");
+                throw new ArgumentException("Cuenta no encontrada");
             }
 
-            // Lógica para manejar el tipo de transacción (por ejemplo, depósito o retiro)
-            if (tipoTransaccion == "DEP")
-            {
-                cuenta.saldo += monto;  // Aumentar el saldo por un depósito
-            }
-            else if (tipoTransaccion == "RET")
-            {
-                if (cuenta.saldo < monto)
-                {
-                    throw new Exception("Saldo insuficiente para retiro");
-                }
-                cuenta.saldo -= monto;  // Disminuir el saldo por un retiro
-            }
-            else
-            {
-                throw new Exception("Tipo de transacción no válido");
+            if(!cuenta.estado){
+                throw new ArgumentException("La Cuenta se encuentra inactiva");
             }
 
-            // Registrar la transacción en la base de datos (esto puede involucrar otra entidad de transacciones)
-            var transaccion = new Transaccion
-            {
-                cuenta = cuenta,
-                fecha = DateTime.Now,
-                idCuenta = cuenta.id,
-                tipoTransaccion = tipoTransaccion,
-                monto = monto
-
-            };
-
-            _context.Transacciones.Add(transaccion);
-            await _context.SaveChangesAsync();  // Guardar los cambios
-
-            // Devolver el estado actualizado de la cuenta
+            cuenta.saldo = cuenta.saldo + monto;
             await _context.SaveChangesAsync();
+
+            return cuenta;
         }
+
+        public async Task<Cuenta> retiroCuenta(string numeroCuenta, decimal monto)
+        {
+            if (string.IsNullOrEmpty(numeroCuenta))
+            {
+                throw new ArgumentException("El numero de cuenta es requerido");
+            }
+
+            var cuenta = await _context.Cuentas.FirstOrDefaultAsync(c => c.numeroCuenta == numeroCuenta);
+
+            if (cuenta == null)
+            {
+                throw new ArgumentException("Cuenta no encontrada");
+            }
+
+            if(!cuenta.estado){
+                throw new ArgumentException("La Cuenta se encuentra inactiva");
+            }
+
+            if(cuenta.saldo < monto){
+                throw new ArgumentException("La cuenta del cliente no cuenta con el saldo suficiente");
+            }
+
+            cuenta.saldo = cuenta.saldo - monto;
+            await _context.SaveChangesAsync();
+
+            return cuenta;
+        }
+
+        
+
+
 
 
     }

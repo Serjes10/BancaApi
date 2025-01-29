@@ -51,8 +51,15 @@ public class ClienteService : IClienteServices
     public async Task<Cliente> crearCliente(string nombre, string identificacion, DateTime fechaNacimiento, string sexo, decimal ingresos)
     {
 
+        var cliente = await consultarClienteByIndentificacion(identificacion);
+
+        if(cliente != null){
+            throw new Exception("El cliente ingresado ya existe");
+
+        }
+
         // Crear cliente
-        var cliente = new Cliente
+        var nuevoCliente = new Cliente
         {
             nombre = nombre,
             identificacion = identificacion,
@@ -63,12 +70,12 @@ public class ClienteService : IClienteServices
             estado = true
         };
 
-        validarCliente(cliente);
+        validarCliente(nuevoCliente);
 
-        _context.Clientes.Add(cliente);
+        _context.Clientes.Add(nuevoCliente);
         await _context.SaveChangesAsync();
 
-        return cliente;
+        return nuevoCliente;
     }
 
     public void validarCliente(Cliente cliente)

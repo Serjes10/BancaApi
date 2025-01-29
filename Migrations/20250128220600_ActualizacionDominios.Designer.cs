@@ -3,6 +3,7 @@ using System;
 using BancaApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BancaApi.Migrations
 {
     [DbContext(typeof(BancaDbContext))]
-    partial class BancaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250128220600_ActualizacionDominios")]
+    partial class ActualizacionDominios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -116,10 +119,6 @@ namespace BancaApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("estado")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("fecha")
                         .HasColumnType("TEXT");
 
@@ -127,9 +126,6 @@ namespace BancaApi.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("monto")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("saldoFinal")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("tipoTransaccion")

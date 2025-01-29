@@ -1,12 +1,7 @@
-/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.csproj.AssemblyReference.cache
-/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.GeneratedMSBuildEditorConfig.editorconfig
-/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.AssemblyInfoInputs.cache
-/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.AssemblyInfo.cs
-/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.csproj.CoreCompileInputs.cache
-/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.MvcApplicationPartsAssemblyInfo.cs
-/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.MvcApplicationPartsAssemblyInfo.cache
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/appsettings.Development.json
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/appsettings.json
+/Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/obj/BancaApi.Tests.csproj.nuget.dgspec.json
+/Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/obj/project.assets.json
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.deps.json
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.runtimeconfig.json
@@ -149,6 +144,12 @@
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
+/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.csproj.AssemblyReference.cache
+/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.csproj.CoreCompileInputs.cache
+/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.MvcApplicationPartsAssemblyInfo.cs
+/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.MvcApplicationPartsAssemblyInfo.cache
+/Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.sourcelink.json
 /Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/staticwebassets.build.json
 /Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/staticwebassets.development.json
 /Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/staticwebassets/msbuild.BancaApi.Microsoft.AspNetCore.StaticWebAssets.props
@@ -163,3 +164,6 @@
 /Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.pdb
 /Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/BancaApi.genruntimeconfig.cache
 /Users/sergioortega/Documents/BancaApi/obj/Debug/net8.0/ref/BancaApi.dll
+/Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/bin/Debug/net8.0/BancaApi.Tests.deps.json
+/Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/bin/Debug/net8.0/BancaApi.Tests.runtimeconfig.json
+/Users/sergioortega/Documents/BancaApi/bin/Debug/net8.0/BancaApi.Tests/obj/Debug/net8.0/BancaApi.Tests.sourcelink.json

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BancaApi.Controllers;
 
 [ApiController]
-[Route("api/v1/cliente")]
+[Route("api/dev/v1/cliente")]
 public class ClienteController : ControllerBase
 {
     private readonly IClienteServices _clienteServives;
@@ -24,12 +24,13 @@ public class ClienteController : ControllerBase
 
             return Ok(new Response<object>(clientes));
         }
-        catch (System.Exception)
+        catch (ArgumentException ex)
         {
-            Console.WriteLine("Entro");
-
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrio un error interno" }));
-
+            return BadRequest(new Response<string>(new List<string> { ex.Message }));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
     }
 
@@ -47,10 +48,13 @@ public class ClienteController : ControllerBase
 
             return Ok(new Response<object>(cliente));
         }
-        catch (System.Exception)
+        catch (ArgumentException ex)
         {
-
-            return StatusCode(500, new Response<string>(new List<string> { "Ocurrio un error interno" }));
+            return BadRequest(new Response<string>(new List<string> { ex.Message }));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new Response<string>(new List<string> { "Ocurrió un error interno: " + ex.Message }));
         }
 
     }
