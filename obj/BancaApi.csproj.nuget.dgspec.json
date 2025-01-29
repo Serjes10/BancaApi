@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sergioortega/Documents/BancaApi/BancaApi.csproj": {}
+    "D:\\Programacion\\BancaApi\\BancaApi\\BancaApi.csproj": {}
   },
   "projects": {
-    "/Users/sergioortega/Documents/BancaApi/BancaApi.csproj": {
+    "D:\\Programacion\\BancaApi\\BancaApi\\BancaApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sergioortega/Documents/BancaApi/BancaApi.csproj",
+        "projectUniqueName": "D:\\Programacion\\BancaApi\\BancaApi\\BancaApi.csproj",
         "projectName": "BancaApi",
-        "projectPath": "/Users/sergioortega/Documents/BancaApi/BancaApi.csproj",
-        "packagesPath": "/Users/sergioortega/.nuget/packages/",
-        "outputPath": "/Users/sergioortega/Documents/BancaApi/obj/",
+        "projectPath": "D:\\Programacion\\BancaApi\\BancaApi\\BancaApi.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Programacion\\BancaApi\\BancaApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/sergioortega/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.405/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
